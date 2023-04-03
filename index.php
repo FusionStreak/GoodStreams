@@ -24,19 +24,19 @@
 </head>
 
 <body>
-    <?php require_once(__DIR__ . '/components/navbar.phtml') ?>
+    <?php require_once(__DIR__ . '/components/navbar.php') ?>
 
     <main>
         <?php
         session_start();
 
         $page = isset($_GET['page']) != '' ? $_GET['page'] : 'home';
-        print file_get_contents(__DIR__ . '/content/' . $page . '.phtml')
+        print file_get_contents(__DIR__ . '/content/' . $page . '.php')
 
         ?>
     </main>
 
-    <?php require_once(__DIR__ . '/components/footer.phtml') ?>
+    <?php require_once(__DIR__ . '/components/footer.php') ?>
 
 </body>
 
