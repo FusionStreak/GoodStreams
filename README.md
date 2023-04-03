@@ -1,5 +1,7 @@
 # GoodStreams
 
+**THIS IS NOT A SECURE APPLICATION. IT IS PURELY FOR EDUCATIONAL PURPOSES, AND IS NOT MEANT FOR ANY ACTUAL DEPLOYMENT**
+
 NET 3010 Course Project - Website to keep track of watched movies and reviews.
 
 ## Description of Project
