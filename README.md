@@ -2,7 +2,15 @@
 
 NET 3010 Course Project - Website to keep track of watched movies and reviews.
 
-## Site Map
+## Description of Project
+
+GoodStreams is a website that allows users to keep personalized lists of movies/shows they have watched or want to watch. The user will also be able to review movies/shows, and other users can view those reviews.
+
+## Team Members
+
+- [Madeline Quang](https://github.com/madelinequang9) - Front End Designer
+- [Oreoluwa Adegbesan](https://github.com/Oreoluwa123) - Front-end Developer
+- [Sayfullah Eid](https://github.com/FusionStreak) - Team Lead | Back-end Developer
 
 ## Database
 
@@ -26,9 +34,20 @@ We are using the *[MoviesDatabase](https://rapidapi.com/SAdrian/api/moviesdataba
 
 6) Do not put single or double quotes around either value
 
-## Style Guide
-
 ## Functionality
+
+- List of shows/movies watched
+- List of shows/movies user wants to watch
+- Review shows/movies watched
+- View others reviews on shows/movies
+
+## The Stack
+
+- PHP - Server-side rendering
+- MariaDB - store user generated data and login details
+- JS - Client-side dynamism
+- GitHub - Collaboration
+- HTML/CSS
 
 ## Citations
 
