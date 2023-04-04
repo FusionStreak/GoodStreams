@@ -16,6 +16,8 @@ GoodStreams is a website that allows users to keep personalized lists of movies/
 
 ## Database
 
+![Schema](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/fusionstreak/GoodStreams/main/schema.puml)
+
 ## MovieDatabase API
 
 We are using the *[MoviesDatabase](https://rapidapi.com/SAdrian/api/moviesdatabase)* from RapidAPI.
