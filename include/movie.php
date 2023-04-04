@@ -66,7 +66,3 @@ class Movie
         }
     }
 }
-
-echo BASE_URL . 'titles/search/title/' . 'shark ';
-
-(new Movie())->search('shark');
