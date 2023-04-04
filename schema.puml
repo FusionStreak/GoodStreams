@@ -56,3 +56,5 @@ Users -d-o{ Wishlist
 Users -l-o{ Reviews
 Movies -o{ Wishlist
 Movies -o{ Reviews
+
+@enduml
