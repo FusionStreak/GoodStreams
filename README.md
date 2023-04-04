@@ -1,6 +1,6 @@
 # GoodStreams
 
-**THIS IS NOT A SECURE APPLICATION. IT IS PURELY FOR EDUCATIONAL PURPOSES, AND IS NOT MEANT FOR ANY ACTUAL DEPLOYMENT**
+**THIS IS NOT A SECURE APPLICATION. IT IS PURELY FOR EDUCATIONAL PURPOSES, AND IS NOT MEANT FOR ANY ACTUAL DEPLOYMENT!**
 
 NET 3010 Course Project - Website to keep track of watched movies and reviews.
 
@@ -16,7 +16,7 @@ GoodStreams is a website that allows users to keep personalized lists of movies/
 
 ## Database
 
-![Schema](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/fusionstreak/GoodStreams/main/schema.puml)
+![Schema](https://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/fusionstreak/GoodStreams/main/schema.puml)
 
 ## MovieDatabase API
 

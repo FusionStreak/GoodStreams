@@ -48,8 +48,9 @@ entity Reviews {
     user_id
     movie_id
     --
-    rating INT(1)
-    review VARCHAR(512)
+    rating: INT(1)
+    review: VARCHAR(512)
+    date: DATE()
 }
 
 Users -d-o{ Wishlist
