@@ -53,4 +53,4 @@ We are using the *[MoviesDatabase](https://rapidapi.com/SAdrian/api/moviesdataba
 
 ## Citations
 
-- [php-dotenv](https://github.com/devcoder-xyz/php-dotenv) bye F. Michel([@devcoder-xyz](https://github.com/devcoder-xyz))
+- [php-dotenv](https://github.com/devcoder-xyz/php-dotenv) by F. Michel([@devcoder-xyz](https://github.com/devcoder-xyz))
