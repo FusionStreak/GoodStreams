@@ -30,6 +30,11 @@ class DB
         $this->initDB();
     }
 
+    public function __destruct()
+    {
+        $this->conn->close();
+    }
+
     /**
      * Creates the Database and necessary tables required for the application,
      * if they do not exist
@@ -121,7 +126,41 @@ class DB
         return password_verify($pass, $result['pass']) && $email === $result['email'];
     }
 
-    private function closeDB()
+    /**
+     * Adds a movie to a user's wishlist
+     * 
+     * @param string $email The user's email address
+     * @param string $movie_id The id of the movie they are adding
+     * 
+     * @return bool Whether action was successful
+     */
+    public function add_wish(string $email, string $movie_id): bool
     {
+
+    }
+
+    /**
+     * Removes a movie for a user's wishlist
+     * 
+     * @param $email
+     */
+    public function remove_wish(string $email, string $movie_id)
+    {
+
+    }
+
+    public function add_review(string $email, string $movie_id, int $rating, string $review)
+    {
+
+    }
+
+    public function update_review(string $email, string $movie_id, int $rating, string $review)
+    {
+
+    }
+
+    public function remove_review(string $email, string $movie_id)
+    {
+
     }
 }
