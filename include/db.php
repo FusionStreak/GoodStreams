@@ -26,13 +26,20 @@ class DB
         (new DotEnv(__DIR__ . '/.env'))->load();
         $this->db_pass = getenv('DB_PASS');
         $this->conn = new mysqli(DB_SERVER, DB_USER, $this->db_pass);
+
+        $this->initDB();
+    }
+
+    public function __destruct()
+    {
+        $this->conn->close();
     }
 
     /**
      * Creates the Database and necessary tables required for the application,
      * if they do not exist
      */
-    public function initDB()
+    private function initDB()
     {
         // Create the Database with the name defined as `DB_NAME`, if it does no exsist
         $query = 'CREATE DATABASE IF NOT EXISTS ' . DB_NAME;
@@ -44,12 +51,40 @@ class DB
 
         // Create User table, if it does not exist
         $query = 'CREATE TABLE IF NOT EXISTS Users (
-            id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            user_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             email VARCHAR(50) NOT NULL UNIQUE,
             pass VARCHAR(255) NOT NULL,
-            uname VARCHAR(50) NOT NULL,;
-            ';
+            uname VARCHAR(50) NOT NULL
+            );';
+        $this->conn->query($query);
 
+        // Create Movie table, if it does not exist
+        $query = 'CREATE TABLE IF NOT EXISTS Movies (
+            movie_id VARCHAR(10) NOT NULL PRIMARY KEY
+            );';
+        $this->conn->query($query);
+
+        // Create Reviews relation table, if it does not exist
+        $query = 'CREATE TABLE IF NOT EXISTS Reviews (
+            review_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            user_id INT UNSIGNED,
+            movie_id VARCHAR(10),
+            rating INT(1) UNSIGNED,
+            review VARCHAR(512),
+            date DATE DEFAULT current_timestamp(),
+            FOREIGN KEY (user_id) REFERENCES Users(user_id),
+            FOREIGN KEY (movie_id) REFERENCES Movies(movie_id)
+            );';
+        $this->conn->query($query);
+
+        // Create Wishlists table
+        $query = 'CREATE TABLE IF NOT EXISTS Wishlists (
+            wish_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            user_id INT UNSIGNED,
+            movie_id VARCHAR(10),
+            FOREIGN KEY (user_id) REFERENCES Users(user_id),
+            FOREIGN KEY (movie_id) REFERENCES Movies(movie_id)
+            );';
         $this->conn->query($query);
     }
 
@@ -91,7 +126,41 @@ class DB
         return password_verify($pass, $result['pass']) && $email === $result['email'];
     }
 
-    private function closeDB()
+    /**
+     * Adds a movie to a user's wishlist
+     * 
+     * @param string $email The user's email address
+     * @param string $movie_id The id of the movie they are adding
+     * 
+     * @return bool Whether action was successful
+     */
+    public function add_wish(string $email, string $movie_id): bool
     {
+
+    }
+
+    /**
+     * Removes a movie for a user's wishlist
+     * 
+     * @param $email
+     */
+    public function remove_wish(string $email, string $movie_id)
+    {
+
+    }
+
+    public function add_review(string $email, string $movie_id, int $rating, string $review)
+    {
+
+    }
+
+    public function update_review(string $email, string $movie_id, int $rating, string $review)
+    {
+
+    }
+
+    public function remove_review(string $email, string $movie_id)
+    {
+
     }
 }
