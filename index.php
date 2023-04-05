@@ -18,12 +18,14 @@
     <meta name="date" content="31/03/2023">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="style/main.css" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <script async type="text/javascript" src="js/script.js"></script>
 
     <title><?php print ucfirst(isset($_GET['page']) ? $_GET['page'] : 'home') . ' | GoodStreams' ?></title>
 </head>
 
 <body>
+    <?php require_once(__DIR__ . '/components/header.php') ?>
     <?php require_once(__DIR__ . '/components/navbar.php') ?>
 
     <main>
