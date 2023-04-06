@@ -24,62 +24,6 @@ function gen_date(array $date): string
     return $date;
 }
 
-/**
- * Extracts the basic info from a result node
- * 
- * @param array $string The result node
- * 
- * @return array The extracted information
- */
-function get_basic_info(array $result): array
-{
-    $cleaned = []; // Holds the cleaned data
-    $cleaned['id'] = $result['id'];  // Retreive ID
-    $cleaned['title'] = $result['titleText']['text']; // Retrieve Title
-    $cleaned['img'] = $result['primaryImage']['url'] ? $result['primaryImage']['url'] : NULL; // Retrieve link to poster img
-    $cleaned['date'] = $result['releaseDate'] ? gen_date($result['releaseDate']) : NULL; // Retrieve and parse release date
-
-    return $cleaned;
-}
-
-/**
- * Extracts multiple results in an array, from a search
- * 
- * @param array $results The results array
- * 
- * @return array The parsed results array
- */
-function exctract_results(array $results): array
-{
-    $extracted = []; // Holds the final extracted data
-
-    foreach ($results as $result) { // For each movie in list
-        $cleaned = get_basic_info($result);
-        array_push($extracted, $cleaned); // Push to extracted
-    }
-
-    return $extracted;
-}
-
-/**
- * Extract info from a single movie
- * 
- * @param array $result The result to be parsed
- * 
- * @return array The extracted information
- */
-function extract_single(array $result): array
-{
-    $cleaned = get_basic_info($result);
-    $cleaned['cast'] = [];
-
-    foreach ($result['cast'] as $cast) {
-        array_push($cleaned['cast'], $cast['node']['name']['nameText']['text']);
-    }
-
-    return $cleaned;
-}
-
 class Movie
 {
     /**
@@ -88,6 +32,62 @@ class Movie
      * @var (string|true|int|string[])[]
      */
     private $req_options;
+
+    /**
+     * Extracts the basic info from a result node
+     * 
+     * @param array $string The result node
+     * 
+     * @return array The extracted information
+     */
+    private function get_basic_info(array $result): array
+    {
+        $cleaned = []; // Holds the cleaned data
+        $cleaned['id'] = $result['id'];  // Retreive ID
+        $cleaned['title'] = $result['titleText']['text']; // Retrieve Title
+        $cleaned['img'] = $result['primaryImage']['url'] ? $result['primaryImage']['url'] : NULL; // Retrieve link to poster img
+        $cleaned['date'] = $result['releaseDate'] ? gen_date($result['releaseDate']) : NULL; // Retrieve and parse release date
+
+        return $cleaned;
+    }
+
+    /**
+     * Extracts multiple results in an array, from a search
+     * 
+     * @param array $results The results array
+     * 
+     * @return array The parsed results array
+     */
+    private function exctract_results(array $results): array
+    {
+        $extracted = []; // Holds the final extracted data
+
+        foreach ($results as $result) { // For each movie in list
+            $cleaned = $this->get_basic_info($result);
+            array_push($extracted, $cleaned); // Push to extracted
+        }
+
+        return $extracted;
+    }
+
+    /**
+     * Extract info from a single movie
+     * 
+     * @param array $result The result to be parsed
+     * 
+     * @return array The extracted information
+     */
+    private function extract_single(array $result): array
+    {
+        $cleaned = $this->get_basic_info($result);
+        $cleaned['cast'] = [];
+
+        foreach ($result['cast'] as $cast) {
+            array_push($cleaned['cast'], $cast['node']['name']['nameText']['text']);
+        }
+
+        return $cleaned;
+    }
 
     public function __construct()
     {
@@ -115,11 +115,13 @@ class Movie
      * 
      * @param string $title Title or partial title of movie
      * @param array $options Array of search options
+     * 
+     * @return array An array of movies
      */
-    public function search(string $title, array $options = [])
+    public function search(string $title, array $options = []): array
     {
 
-        $req_url = BASE_URL . 'titles/search/title/' . $title . '?titleType=movie&limit=50&sort=year.decr';
+        $req_url = BASE_URL . 'titles/search/title/' . $title . '?titleType=movie&limit=50&sort=year.decr&endYear=' . date('Y');
 
         $curl = curl_init($req_url);
 
@@ -133,7 +135,41 @@ class Movie
         if ($err) {
             return ['err' => $err];
         } else {
-            return exctract_results(json_decode($response, true)['results']);
+            return $this->exctract_results(json_decode($response, true)['results']);
+        }
+    }
+
+    /**
+     * Get a list of movies by genre
+     * 
+     * @param string $genre The genre to search for
+     * 
+     * Possible genres:
+     * ```
+     * [ "Action", "Adult", "Adventure", "Animation", "Biography", "Comedy", "Crime", "Documentary", "Drama",
+     * "Family", "Fantasy", "Film-Noir", "Game-Show", "History", "Horror", "Music", "Musical",
+     * "Mystery", "News", "Reality-TV", "Romance", "Sci-Fi", "Short", "Sport", "Talk-Show", "Thriller","War","Western" ]
+     * ```
+     *
+     * @return array An array of movies
+     */
+    public function get_by_genre(string $genre): array
+    {
+        $req_url = BASE_URL . 'titles?titleType=movie&genre=' . $genre . '&sort=year.decr&limit=50&endYear=' . date('Y');
+
+        $curl = curl_init($req_url);
+
+        curl_setopt_array($curl, $this->req_options);
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            return ['err' => $err];
+        } else {
+            return $this->exctract_results(json_decode($response, true)['results']);
         }
     }
 
@@ -170,6 +206,6 @@ class Movie
         }
         $result['cast'] = json_decode($response, true)['results']['cast']['edges'];
 
-        return extract_single($result);
+        return $this->extract_single($result);
     }
 }
