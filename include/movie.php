@@ -174,6 +174,29 @@ class Movie
     }
 
     /**
+     * Get top 50 movies
+     * 
+     * @return array An array of movies
+     */
+    public function get_top(): array
+    {
+        $req_url = BASE_URL . '/titles?titleType=movie&limit=50&list=top_rated_250&endYear=2023';
+
+        $curl = curl_init($req_url);
+
+        curl_setopt_array($curl, $this->req_options);
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        if ($err) {
+            return ['err' => $err];
+        } else {
+            return $this->exctract_results(json_decode($response, true)['results']);
+        }
+    }
+
+    /**
      * Retrieve movie details by id
      * 
      * @param string $id The id of the movie
