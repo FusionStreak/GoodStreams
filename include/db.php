@@ -89,6 +89,24 @@ class DB
     }
 
     /**
+     * Retrieve basic info on a user
+     * 
+     * @param string $email The email address of the user
+     * 
+     * @return array|false|null The user info, or false/null if not found
+     */
+    private function get_user(string $email)
+    {
+        $query = 'SELECT user_id, email FROM Users WHERE email=?';
+
+        $result = $this->conn->execute_query($query, [$email])->fetch_assoc();
+
+        unset($result['pass']);
+
+        return $result;
+    }
+
+    /**
      * Function to create a new user entry in DB
      * 
      * @param string $email The email of the user, will be used as the username
@@ -136,31 +154,92 @@ class DB
      */
     public function add_wish(string $email, string $movie_id): bool
     {
+        $user = $this->get_user($email);
 
+        $query = 'INSERT INTO Wishlists (user_id, movie_id) VALUES (?, ?);';
+
+        $result = $this->conn->execute_query($query, [$user['user_id'], $movie_id]);
+
+        return $result ? true : false;
     }
 
     /**
      * Removes a movie for a user's wishlist
      * 
-     * @param $email
+     * @param string $email The user's email address
+     * @param string $movie_id The id of the movie they are removing
+     * 
+     * @return bool Whether the action was successful
      */
-    public function remove_wish(string $email, string $movie_id)
+    public function remove_wish(string $email, string $movie_id): bool
     {
+        $user = $this->get_user($email);
 
+        $query = 'DELETE FROM Wishlists WHERE user_id = ? AND movie_id = ?;';
+
+        $result = $this->conn->execute_query($query, [$user['user_id'], $movie_id]);
+
+        return $result ? true : false;
     }
 
-    public function add_review(string $email, string $movie_id, int $rating, string $review)
+    /**
+     * Add a review to a movie
+     * 
+     * @param string $email The user's email address
+     * @param string $movie_id The id of the movie being reviewed
+     * @param string $rating The numerical rating of the review, [0, 10]
+     * @param string $review The text review, maximum 512 characters
+     * 
+     * @return bool Whether the action was successful
+     */
+    public function add_review(string $email, string $movie_id, int $rating, string $review): bool
     {
+        $user = $this->get_user($email);
 
+        $query = 'INSERT INTO Reviews (user_id, movie_id, rating, review) VALUES (?, ?, ?, ?);';
+
+        $result = $this->conn->execute_query($query, [$user['user_id'], $movie_id, $rating, $review]);
+
+        return $result ? true : false;
     }
 
-    public function update_review(string $email, string $movie_id, int $rating, string $review)
+    /**
+     * Update an existing review
+     * 
+     * @param string $email The user's email address
+     * @param string $movie_id The id of the movie being reviewed
+     * @param string $rating The updated numerical rating, [0, 10]
+     * @param string $review The updated text review, maximum 512 characters
+     * 
+     * @return bool Whether the action was successful
+     */
+    public function update_review(string $email, string $movie_id, int $rating, string $review): bool
     {
+        $user = $this->get_user($email);
 
+        $query = 'UPDATE Reviews SET rating = ?, review = ? WHERE user_id = ? AND movie_id = ?;';
+
+        $result = $this->conn->execute_query($query, [$rating, $review, $user['user_id'], $movie_id]);
+
+        return $result ? true : false;
     }
 
+    /**
+     * Removes a review from a movie
+     * 
+     * @param string $email The user's email address
+     * @param string $movie_id The id of the movie
+     * 
+     * @return bool Whether the action was successful
+     */
     public function remove_review(string $email, string $movie_id)
     {
+        $user = $this->get_user($email);
 
+        $query = 'DELETE FROM Reviews WHERE user_id = ? AND movie_id = ?;';
+
+        $result = $this->conn->execute_query($query, [$user['user_id'], $movie_id]);
+
+        return $result ? true : false;
     }
 }
