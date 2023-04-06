@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+@font-face {
+    font-family: 'Material Symbols Outlined';
+    font-style: normal;
+    font-weight: 100 700;
+    src: url(https://fonts.gstatic.com/s/materialsymbolsoutlined/v100/kJEhBvYX7BgnkSrUwT8OhrdQw4oELdPIeeII9v6oFsI.woff2) format('woff2');
+}
+
+:root {
+    --navy: rgb(43, 52, 103);
+    --light-blue: rgb(186, 215, 233);
+    --beige: rgb(252, 255, 231);
+    --red-pink: rgb(235, 69, 95);
+    --purple: rgb(68, 60, 104)
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-blue);
+    transition: margin-left .5s;
+}
+
+header {
+    background-color: var(--navy);
+}
+
+.material-symbols-outlined {
+    margin: 1%;
+    font-family: 'Material Symbols Outlined';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 48px;
+    color: var(--red-pink);
+    line-height: 1;
+    letter-spacing: normal;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}
+
+.material-symbols-outlined:hover {
+    color: var(--navy);
+    background-color: var(--red-pink);
+    cursor: pointer;
+}
+
+header h1 {
+    width: 88%;
+    color: var(--red-pink);
+    font-family: 'Righteous', cursive;
+    font-size: 50px;
+    font-weight: 700;
+    display: inline-block;
+    text-align: center;
+}
+
+footer {
+    background-color: var(--navy);
+    padding: 2%;
+}
+
+footer h3 {
+    text-align: center;
+    color: var(--red-pink);
+}
+
+.side-nav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--purple);
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.side-nav li {
+  padding: 25px 15px 25px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  display: block;
+  transition: 0.3s;
+}
+
+.side-nav li:hover {
+    background-color: var(--beige);
+}
+
+.side-nav a {
+    text-decoration: none;
+    color: var(--red-pink);
+    font-family: 'Righteous', cursive;
+}
+
+#close{
+    display: none;
+}
+
+
+
+
