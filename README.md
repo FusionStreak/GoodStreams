@@ -18,7 +18,7 @@ GoodStreams is a website that allows users to keep personalized lists of movies/
 
 ![Schema](https://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/fusionstreak/GoodStreams/main/schema.puml)
 
-## MovieDatabase API
+## MoviesDatabase API
 
 We are using the *[MoviesDatabase](https://rapidapi.com/SAdrian/api/moviesdatabase)* from RapidAPI.
 
@@ -47,11 +47,14 @@ We are using the *[MoviesDatabase](https://rapidapi.com/SAdrian/api/moviesdataba
 
 ## The Stack
 
-- PHP - Server-side rendering
-- MariaDB - store user generated data and login details
+This website is designed to work with the latest XAMPP/LAMPP stack
+
+- PHP (v8.2<) - Server-side rendering
+- MariaDB - Store user generated data and login details
 - JS - Client-side dynamism
 - GitHub - Collaboration
-- HTML/CSS
+- HTML 5
+- CSS
 
 ## Citations
 
