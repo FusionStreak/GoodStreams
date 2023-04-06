@@ -3,7 +3,6 @@
 require(__DIR__ . '/dotenv.php');
 
 define('DB_SERVER', 'localhost');
-define('DB_USER', 'root');
 define('DB_NAME', 'GoodStreams');
 
 /**
@@ -11,8 +10,6 @@ define('DB_NAME', 'GoodStreams');
  */
 class DB
 {
-    private $db_pass;
-
     /**
      * Stores MySQLi connection object
      * 
@@ -24,8 +21,7 @@ class DB
     {
         // Load the API details to ENV
         (new DotEnv(__DIR__ . '/.env'))->load();
-        $this->db_pass = getenv('DB_PASS');
-        $this->conn = new mysqli(DB_SERVER, DB_USER, $this->db_pass);
+        $this->conn = new mysqli(DB_SERVER, getenv('DB_USER'), getenv('DB_PASS'));
 
         $this->initDB();
     }
