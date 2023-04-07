@@ -24,7 +24,7 @@ require_once 'db.php';
     <input type="submit" value="Login">
   </form>
 
-  <p>Don't have an account yet? <a href="registration.php">Register here</a></p>
+  <p>Don't have an account yet? <a href="?page=registration">Register here</a></p>
 </body>
 
 
