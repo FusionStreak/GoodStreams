@@ -29,16 +29,13 @@ We are using the *[MoviesDatabase](https://rapidapi.com/SAdrian/api/moviesdataba
 3) Generate an API key (Keep it secret)
     - Can be found under header paramaters
 4) Install XAMPP/LAMPP
-5) Take note of MariaDB username and password
-6) Startup Apache and MySQL servers
-7) Create a file called `.env` under `include/`
-8) Insert the following into the file
+5) Startup Apache and MySQL servers
+6) Create a file called `.env` under `include/`
+7) Insert the following into the file
 
     ```.env
     API_KEY = <Your API KEY>
     API_HOST = <Your API Host>
-    DB_USER = <MariaDB username>
-    DB_PASS = <MariaDB password>
     ```
 
 ## Functionality
