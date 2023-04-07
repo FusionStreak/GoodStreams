@@ -19,6 +19,7 @@
 body {
     margin: 0;
     padding: 0;
+    color: var(--red-pink);
     background-color: var(--light-blue);
     transition: margin-left .5s;
 }
@@ -135,6 +136,14 @@ input {
     height: 100%;
     color: var(--navy);
     padding: 10px 20px;
+}
+
+input[type="submit"] {
+    background-color: var(--red-pink);
+    color: var(--beige);
+    border-radius: 5px;
+    width: fit-content;
+    height: fit-content;
 }
 
 ::placeholder {
