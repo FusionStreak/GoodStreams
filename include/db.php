@@ -23,7 +23,7 @@ class DB
     {
         // Load the API details to ENV
         (new DotEnv(__DIR__ . '/.env'))->load();
-        $this->conn = new mysqli(DB_SERVER, getenv('DB_USER'), getenv('DB_PASS'));
+        $this->conn = new mysqli(DB_SERVER, 'root');
 
         $this->initDB();
     }
@@ -104,6 +104,13 @@ class DB
         return $result;
     }
 
+    private function insert_movie(string $movie_id)
+    {
+        $query = 'INSERT IGNORE INTO Movies (movie_id) VALUES (?)';
+
+        $this->conn->execute_query($query, [$movie_id]);
+    }
+
     /**
      * Function to create a new user entry in DB
      * 
@@ -120,7 +127,7 @@ class DB
 
         $values = [$email, $hashed, $uname];
 
-        $query = 'INSERT INTO Users (email, pass, uname) VALUES (?, ?, ?);';
+        $query = 'REPLACE INTO Users (email, pass, uname) VALUES (?, ?, ?);';
 
         return $this->conn->execute_query($query, $values);
     }
@@ -152,9 +159,10 @@ class DB
      */
     public function add_wish(string $email, string $movie_id): bool
     {
+        $this->insert_movie($movie_id);
         $user = $this->get_user($email);
 
-        $query = 'INSERT INTO Wishlists (user_id, movie_id) VALUES (?, ?);';
+        $query = 'REPLACE INTO Wishlists (user_id, movie_id) VALUES (?, ?);';
 
         $result = $this->conn->execute_query($query, [$user['user_id'], $movie_id]);
 
@@ -181,6 +189,33 @@ class DB
     }
 
     /**
+     * Retrieve a user's wishlist
+     * 
+     * @param string $email The user's email address
+     * 
+     * @return array of movie ids
+     */
+    public function get_user_wishlist(string $email)
+    {
+
+        $user = $this->get_user($email);
+
+        $query = "SELECT movie_id FROM Wishlists WHERE user_id = ?";
+
+        $results = $this->conn->execute_query($query, [$user['user_id']])->fetch_all();
+
+        $result = [];
+
+        foreach ($results as $res) {
+            if (!in_array($res[0], $result)) {
+                array_push($result, $res[0]);
+            }
+        }
+
+        return $result;
+    }
+
+    /**
      * Add a review to a movie
      * 
      * @param string $email The user's email address
@@ -192,9 +227,10 @@ class DB
      */
     public function add_review(string $email, string $movie_id, int $rating, string $review): bool
     {
+        $this->insert_movie($movie_id);
         $user = $this->get_user($email);
 
-        $query = 'INSERT INTO Reviews (user_id, movie_id, rating, review) VALUES (?, ?, ?, ?);';
+        $query = 'REPLACE INTO Reviews (user_id, movie_id, rating, review) VALUES (?, ?, ?, ?);';
 
         $result = $this->conn->execute_query($query, [$user['user_id'], $movie_id, $rating, $review]);
 
