@@ -7,6 +7,8 @@ define('DB_NAME', 'GoodStreams');
 
 /**
  * Class to allow website to communicate with Database for user generated content
+ * 
+ * Requires `DP_PASS` and `DB_USER` to be defined in `include/.env`
  */
 class DB
 {

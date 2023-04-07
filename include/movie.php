@@ -24,6 +24,11 @@ function gen_date(array $date): string
     return $date;
 }
 
+/**
+ * Class to interface with the MoviesDatabase API
+ * 
+ * Requires `API_KEY` and `API_HOST` to be defined in `include/.env`
+ */
 class Movie
 {
     /**
