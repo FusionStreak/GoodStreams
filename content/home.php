@@ -7,5 +7,10 @@
 </form>
 </div>
 
-<div id="content">
+<div id="genres-nav">
+    <?php
+        
+    
+    
+    ?>
 </div>
