@@ -22,21 +22,24 @@ GoodStreams is a website that allows users to keep personalized lists of movies/
 
 We are using the *[MoviesDatabase](https://rapidapi.com/SAdrian/api/moviesdatabase)* from RapidAPI.
 
-### How to access
+## How to setup
 
 1) Go to <https://rapidapi.com/SAdrian/api/moviesdatabase>
 2) Create/Login for an account
 3) Generate an API key (Keep it secret)
     - Can be found under header paramaters
-4) Create a file called `.env` under `include/`
-5) Insert the following into the file
+4) Install XAMPP/LAMPP
+5) Take note of MariaDB username and password
+6) Startup Apache and MySQL servers
+7) Create a file called `.env` under `include/`
+8) Insert the following into the file
 
     ```.env
     API_KEY = <Your API KEY>
     API_HOST = <Your API Host>
+    DB_USER = <MariaDB username>
+    DB_PASS = <MariaDB password>
     ```
-
-6) Do not put single or double quotes around either value
 
 ## Functionality
 
