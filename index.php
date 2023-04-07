@@ -25,20 +25,28 @@
 </head>
 
 <body>
-    <?php require_once(__DIR__ . '/components/header.php') ?>
-    <?php require_once(__DIR__ . '/components/navbar.php') ?>
+    <?php
+    // Render the header
+    require_once(__DIR__ . '/components/header.php');
+    ?>
+    <?php
+    // Render the navbar
+    require_once(__DIR__ . '/components/navbar.php');
+    ?>
 
     <main>
         <?php
         session_start();
 
-        $page = isset($_GET['page']) != '' ? $_GET['page'] : 'home';
-        print file_get_contents(__DIR__ . '/content/' . $page . '.php')
-
+        $page = isset($_GET['page']) != '' ? $_GET['page'] : 'home'; // Get which page is currently requested. "home" is default
+        print file_get_contents(__DIR__ . '/content/' . $page . '.php') // Display contents of requested page
         ?>
     </main>
 
-    <?php require_once(__DIR__ . '/components/footer.php') ?>
+    <?php
+    // Render the footer
+    require_once(__DIR__ . '/components/footer.php');
+    ?>
 
 </body>
 
