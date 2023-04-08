@@ -65,6 +65,10 @@ header h1 {
 footer {
     background-color: var(--navy);
     padding: 2%;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
 }
 
 footer h3 {
