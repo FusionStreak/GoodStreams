@@ -1,6 +1,6 @@
 <?php 
 session_start();
-require_once 'db.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/include/db.php';
 
 // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 //   $email = $_POST['email'];

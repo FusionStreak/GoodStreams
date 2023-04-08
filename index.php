@@ -27,11 +27,11 @@
 <body>
     <?php
     // Render the header
-    require_once(__DIR__ . '/components/header.php');
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/components/header.php';
     ?>
     <?php
     // Render the navbar
-    require_once(__DIR__ . '/components/navbar.php');
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/components/navbar.php';
     ?>
 
     <main>
@@ -39,13 +39,13 @@
         session_start();
 
         $page = isset($_GET['page']) != '' ? $_GET['page'] : 'home'; // Get which page is currently requested. "home" is default
-        print file_get_contents(__DIR__ . '/content/' . $page . '.php') // Display contents of requested page
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/content/' . $page . '.php'; // Display contents of requested page
         ?>
     </main>
 
     <?php
     // Render the footer
-    require_once(__DIR__ . '/components/footer.php');
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/components/footer.php';
     ?>
 
 </body>

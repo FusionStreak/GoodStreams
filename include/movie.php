@@ -1,6 +1,6 @@
 <?php
 
-require(__DIR__ . '/dotenv.php');
+require $_SERVER['DOCUMENT_ROOT'] . '/include/dotenv.php';
 
 /**
  * The base URL for any request
