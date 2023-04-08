@@ -28,7 +28,7 @@ entity Users {
     --
     email: VARCHAR(50)
     pass: VARCHAR(255)
-    name: VARCHAR(50)
+    uname: VARCHAR(50)
 }
 
 entity Movies {
@@ -36,14 +36,14 @@ entity Movies {
 }
 
 entity Wishlist {
-    *wish_id: INT(10)
+    *(user_id, movie_id)
     --[Foreign Keys]--
     user_id
     movie_id
 }
 
 entity Reviews {
-    *review_id: INT(10)
+    *(user_id, movie_id)
     --[Foreign Keys]--
     user_id
     movie_id

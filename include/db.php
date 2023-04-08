@@ -64,24 +64,24 @@ class DB
 
         // Create Reviews relation table, if it does not exist
         $query = 'CREATE TABLE IF NOT EXISTS Reviews (
-            review_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             user_id INT UNSIGNED,
             movie_id VARCHAR(10),
             rating INT(1) UNSIGNED,
             review VARCHAR(512),
             date DATE DEFAULT current_timestamp(),
             FOREIGN KEY (user_id) REFERENCES Users(user_id),
-            FOREIGN KEY (movie_id) REFERENCES Movies(movie_id)
+            FOREIGN KEY (movie_id) REFERENCES Movies(movie_id),
+            PRIMARY KEY (user_id, movie_id)
             );';
         $this->conn->query($query);
 
         // Create Wishlists table
         $query = 'CREATE TABLE IF NOT EXISTS Wishlists (
-            wish_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             user_id INT UNSIGNED,
             movie_id VARCHAR(10),
             FOREIGN KEY (user_id) REFERENCES Users(user_id),
-            FOREIGN KEY (movie_id) REFERENCES Movies(movie_id)
+            FOREIGN KEY (movie_id) REFERENCES Movies(movie_id),
+            PRIMARY KEY (user_id, movie_id)
             );';
         $this->conn->query($query);
     }
