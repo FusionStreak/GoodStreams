@@ -56,6 +56,16 @@ class DB
             );';
         $this->conn->query($query);
 
+        // Create Users_Token table, if it does not exist
+        $query = 'CREATE TABLE IF NOT EXISTS Users_Token (
+            user_id INT UNSIGNED,
+            token VARCHAR(255) NOT NULL,
+            expiry DATE,
+            FOREIGN KEY (user_id) REFERENCES Users(user_id),
+            PRIMARY KEY (user_id, token)
+            );';
+        $this->conn->query($query);
+
         // Create Movie table, if it does not exist
         $query = 'CREATE TABLE IF NOT EXISTS Movies (
             movie_id VARCHAR(10) NOT NULL PRIMARY KEY
@@ -111,6 +121,13 @@ class DB
         $this->conn->execute_query($query, [$movie_id]);
     }
 
+    private function insert_token(string $email, $token){
+        $user = $this->get_user($email);
+
+        $query = 'INSERT INTO Users_Token (user_id, token) VALUES (?, ?);';
+        $this->conn->execute_query($query, [$user['user_id'], $token]);
+    }
+
     /**
      * Function to create a new user entry in DB
      * 
@@ -138,15 +155,26 @@ class DB
      * @param string $email The provided email
      * @param string $pass The provided password
      * 
-     * @return bool Whether the the provided data successfully matched
+     * @return string|bool If successful login, return token. Else return `false`
      */
-    public function login(string $email, string $pass): bool
+    public function login(string $email, string $pass): mixed
     {
         $query = "SELECT email, pass FROM Users WHERE email=?";
 
         $result = $this->conn->execute_query($query, [$email])->fetch_assoc();
 
-        return password_verify($pass, $result['pass']) && $email === $result['email'];
+        if (password_verify($pass, $result['pass']) && $email === $result['email']){
+            $token = bin2hex(random_bytes(16));
+            $this->insert_token($email, $token);
+            return $token;
+        }
+        return false;
+    }
+
+    public function verify_token($email, $token): bool {
+        $user = $this->get_user($email);
+        $query = 'SELECT (user_id, token) FROM Users_Token WHERE user_id = ? AND token = ?;';
+        return $this->conn->execute_query($query, [$user['user_id'], $token]) ? true : false;
     }
 
     /**
