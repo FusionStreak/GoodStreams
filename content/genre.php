@@ -10,7 +10,7 @@
     $i=0;
     for ($row=0;$row<sizeof($movies);$row++) {
             if($movies[$i]['img'] != NULL) {
-                echo '<div class="images"><img src='.$movies[$i]['img'].'/div>';
+                echo '<div class="images"><img src='.$movies[$i]['img'].'><button id="wantto">Want to watch</button><button id="watched">Watched</button><button id="info">Info</button></div>';
             }    
             $i++;
     }

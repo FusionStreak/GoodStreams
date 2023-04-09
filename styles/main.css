@@ -132,11 +132,11 @@ h2 {
 
 #searchform form {
     margin-top: auto;
+    flex-direction: row;
 }
 
 form {
     width: 500px;
-    
     background-color: var(--beige);
     border-radius: 20px;
     display: flex;
@@ -145,7 +145,11 @@ form {
     margin: 10px auto auto auto;
 }
 
-input[type=email],[type=text], input[type=password] {   
+label {
+    margin-top: 10px;
+}
+
+input[type=email],input[type=text], input[type=password] {   
     width: 90%;   
     margin: 8px 0;  
     padding: 12px 22px;   
@@ -153,6 +157,7 @@ input[type=email],[type=text], input[type=password] {
     border: 3px solid #EB455F;     
     box-sizing: border-box;   
 }  
+
 input {
     all: unset;
     width: 100%;
@@ -167,6 +172,15 @@ input[type="submit"] {
     border-radius: 5px;
     width: fit-content;
     height: fit-content;
+    margin-bottom: 10px;
+}
+
+input[type="submit"]:hover {
+    background-color: var(--navy);
+}
+
+p {
+    text-align: center;
 }
 
 ::placeholder {
@@ -208,16 +222,53 @@ li a:hover {
     text-decoration: underline;
     color: var(--purple);
 }
+
 .images {
     margin-left: 10px;
-    display: inline;
+    display: inline-block;
+    width: 200px;
+    height: 100%;
 }
 
 img {
-    object-fit: cover;
-    object-position: 100% 0;
+    object-fit: fill;
     width: 200px;
-    height: 20%;
+    max-height: 10%;
+}
+
+.images:hover {
+    opacity: 80%;
+}
+
+.images:hover button {
+    display: inline;
+    align-items: center;
+}
+
+.images button {
+    display: none;
+    position: absolute;
+    background-color: var(--beige);
+    color: var(--navy);
+    border-radius: 10px;
+    opacity: 100%;
+}
+
+#wantto {
+    transform: translate(-150%,150%);
+}
+
+#watched {
+    transform: translate(-200%,300%);
+}
+
+#info {
+    transform: translate(-300%,10%);
+}
+
+button:hover {
+    background-color: var(--red-pink);
+    color: var(--beige);
 }
 
 
