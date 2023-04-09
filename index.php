@@ -1,3 +1,4 @@
+<?php session_start(); ?> 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,7 +39,6 @@
 
     <main>
         <?php
-        session_start();
 
         $page = isset($_GET['page']) != '' ? $_GET['page'] : 'home'; // Get which page is currently requested. "home" is default
         require_once $_SERVER['DOCUMENT_ROOT'] . '/content/' . $page . '.php'; // Display contents of requested page
