@@ -2,6 +2,19 @@
 session_start();
 require $_SERVER['DOCUMENT_ROOT'] . '/include/db.php';
 
+function logout()
+{
+  $database = new DB();
+  $database->logout($_SESSION['email'], $_SESSION['token']);
+  session_unset();
+  // Destroy the session
+  session_destroy();
+}
+
+if (isset($_GET['logout'])) {
+  logout();
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $email = $_POST['email'];
   $password = $_POST['password'];
@@ -11,18 +24,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_SESSION['email'] = $email;
     $_SESSION['token'] = $token;
   }
-
 }
 
-if (isset($_SESSION['email'])) {
-  // Display the welcome message and logout button
-  echo "<h2>Welcome " . $_SESSION['email'] . "!</h2>";
-  echo "<form action='?page=logout.php' method='post'><input type='submit' value='Logout'></form>";
-}
+if (isset($_SESSION['email'])) : // Display the welcome message and logout button 
+?>
 
-else{
-  //display the login form
-  echo '<h2>Login Page</h2>
+  <h2>Welcome <?php print $_SESSION['email'] ?> !</h2>
+
+<?php else : // Display the login form 
+?>
+
+  <h2>Login Page</h2>
   <?php if (isset($error)) : ?>
     <p><?= $error ?></p>
   <?php endif; ?>
@@ -31,12 +43,9 @@ else{
     <input type="email" id="email" name="email"><br>
     <label for="password">Password</label>
     <input type="password" id="password" name="password"><br>
-  
+
     <input type="submit" value="Login">
   </form>
-  
-  <p>Dont have an account yet? <a href="?page=registration">Register here</a></p>
-  ';
-}
-?>
 
+  <p>Dont have an account yet? <a href="?page=registration">Register here</a></p>
+<?php endif; ?>

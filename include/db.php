@@ -177,6 +177,14 @@ class DB
         return $this->conn->execute_query($query, [$user['user_id'], $token]) ? true : false;
     }
 
+    public function logout($email, $token) {
+        if ($this->verify_token($email, $token)) {
+            $user = $this->get_user($email);
+            $query = 'DELETE FROM Users_Token WHERE user_id = ? AND token = ?;';
+            $this->conn->execute_query($query, [$user['user_id'], $token]);
+        }
+    }
+
     /**
      * Adds a movie to a user's wishlist
      * 
