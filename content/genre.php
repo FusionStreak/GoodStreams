@@ -6,12 +6,11 @@
      
     require $_SERVER['DOCUMENT_ROOT'] . '/include/movie.php';
     $moviesAPI = new Movie;
-    $animationMovies = $moviesAPI->get_by_genre("Animation");
+    $movies = $moviesAPI->get_by_genre($_GET['genre']);
     $i=0;
-    for ($row=0;$row<sizeof($animationMovies);$row++) {
-            if($animationMovies[$i]['img'] != NULL) {
-                echo '<div class="images"><img src='.$animationMovies[$i]['img'].'/div>';
+    for ($row=0;$row<sizeof($movies);$row++) {
+            if($movies[$i]['img'] != NULL) {
+                echo '<div class="images"><img src='.$movies[$i]['img'].'/div>';
             }    
             $i++;
-        }
-?>
+    }
