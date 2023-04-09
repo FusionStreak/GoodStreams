@@ -186,7 +186,7 @@ class Movie
      */
     public function get_top(): array
     {
-        $req_url = BASE_URL . '/titles?titleType=movie&limit=50&list=top_rated_250&endYear=2023';
+        $req_url = BASE_URL . 'titles?titleType=movie&limit=50&list=top_rated_250&endYear=2023';
 
         $curl = curl_init($req_url);
 
