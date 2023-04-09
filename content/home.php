@@ -1,15 +1,21 @@
-<h2> Search for movies to watch </h2>
+<?php 
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/components/search.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/components/genresnav.php';
 
-<div id="searchform">
-<form role="search">
-    <input type="search" id="query" name="s" placeholder="Search..." aria-label="Search movies">
-    <span id="search" class="material-symbols-outlined">search</span>
-</form>
-</div>
+    /*require $_SERVER['DOCUMENT_ROOT'] . '/include/movie.php';
+    $moviesAPI = new Movie;
+    $topMovies = $moviesAPI->get_top();
+    $i=0;
+    for ($row=1;$row<sizeof($topMovies)/6;$row++) {
+        for($column=0;$column<6;$column++) {
+            if($topMovies[$i]['img'] != NULL) {
+                echo '<div class="images"><img src='.$topMovies[$i]['img'].'/div>';
+            }    
+            $i++;
+        }
+    }*/
 
-<div id="genres-nav">
-    <?php
-        
-    
-    ?>
-</div>
+
+
+?>
+

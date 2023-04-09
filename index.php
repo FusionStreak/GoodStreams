@@ -27,6 +27,8 @@
 <body>
     <?php
     // Render the header
+    $_SERVER['DOCUMENT_ROOT'] = 'C:/xampp/htdocs/FinalProject/GoodStreams';
+    
     require_once $_SERVER['DOCUMENT_ROOT'] . '/components/header.php';
     ?>
     <?php

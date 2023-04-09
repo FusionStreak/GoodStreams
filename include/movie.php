@@ -18,6 +18,7 @@ define("BASE_URL", "https://moviesdatabase.p.rapidapi.com/");
  */
 function gen_date(array $date): string
 {
+    error_reporting(0);
     $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     $date = $months[$date['month']] . ' ' . $date['day'] . ', ' . $date['year'];
 

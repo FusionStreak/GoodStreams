@@ -1,5 +1,5 @@
 <?php 
-session_start();
+
 require $_SERVER['DOCUMENT_ROOT'] . '/include/db.php';
 
 // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
