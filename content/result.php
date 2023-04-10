@@ -7,13 +7,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/components/genresnav.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/include/movie.php';
 $moviesAPI = new Movie;
 $movies = [];
+
 if ($_GET['method'] == 'genre') {
     $movies = $moviesAPI->get_by_genre($_GET['genre']);
-} elseif ($_GET['method'] == 'top') {
-    $movies = $moviesAPI->get_top();
 } elseif ($_GET['method'] == 'search') {
     $movies = $moviesAPI->search($_GET['search']);
+} else {
+    $movies = $moviesAPI->get_top();
 }
+
 $i = 0;
 for ($row = 0; $row < sizeof($movies); $row++) {
     if ($movies[$i]['img'] != NULL) : ?>
