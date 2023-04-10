@@ -35,8 +35,10 @@ if (isset($_GET['method'])) {
     }
 } else {
     $movies = $moviesAPI->get_top();
-}
+}?>
 
+<div id="imgcontainer">
+<?php
 $i = 0;
 for ($row = 0; $row < sizeof($movies); $row++) {
     if ($movies[$i]['img'] != NULL) : ?>
@@ -62,3 +64,4 @@ for ($row = 0; $row < sizeof($movies); $row++) {
     $i++;
 }
 ?>
+</div>

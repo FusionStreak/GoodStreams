@@ -230,8 +230,17 @@ li a.selected {
     color: var(--purple);
 }
 
+#imgcontainer {
+    margin-top: 10px;
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
 .images {
     margin-left: 10px;
+    margin-right: 10px;
     display: inline-block;
     width: 200px;
 }
@@ -239,7 +248,7 @@ li a.selected {
 img {
     object-fit: fill;
     width: 200px;
-    max-height: 10%;
+    height: 10%;
 }
 
 .images:hover {
