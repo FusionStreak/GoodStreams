@@ -190,7 +190,7 @@ class DB
     public function verify_token($email, $token): bool
     {
         $user = $this->get_user($email);
-        $query = 'SELECT (user_id, token) FROM Users_Token WHERE user_id = ? AND token = ?;';
+        $query = 'SELECT user_id, token FROM Users_Token WHERE user_id = ? AND token = ?;';
         return $this->conn->execute_query($query, [$user['user_id'], $token]) ? true : false;
     }
 
