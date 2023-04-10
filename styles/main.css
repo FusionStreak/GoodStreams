@@ -223,6 +223,11 @@ li a:hover {
     color: var(--purple);
 }
 
+li a.selected {
+    text-decoration: underline;
+    color: var(--purple);
+}
+
 .images {
     margin-left: 10px;
     display: inline-block;
