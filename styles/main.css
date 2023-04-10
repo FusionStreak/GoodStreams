@@ -231,8 +231,6 @@ li a.selected {
 .images {
     margin-left: 10px;
     display: inline-block;
-    width: 200px;
-    height: 100%;
 }
 
 img {
