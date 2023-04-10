@@ -1,9 +1,9 @@
 function openNav() {
     if (window.matchMedia("(max-width:500px").matches) {
-        document.getElementById("sideNav").style.width = "110px";
-        document.querySelector("body").style.marginLeft = "110px";
-        document.getElementById("close").style.display = "block";
-
+        document.getElementById("sideNav").style.width = "150px";
+        document.querySelector("body").style.marginLeft = "150px";
+        document.getElementById("close").style.display = "flex";
+        document.getElementById("close").style.justifyContent = "center"
     }
     else {
         document.getElementById("sideNav").style.width = "300px";
@@ -18,8 +18,8 @@ function closeNav() {
     document.querySelector("body").style.marginLeft = "0";
     document.getElementById("close").style.display = "none";
     if (window.matchMedia("(max-width:500px").matches) {
-        document.getElementById("menu").style.display = "block";
-
+        document.getElementById("menu").style.display = "flex";
+        document.getElementById("menu").style.justifyContent = "center"
     }
     else {
         document.getElementById("menu").style.display = "inline-block";
