@@ -1,6 +1,6 @@
 <nav>
     <div id="sideNav" class="side-nav">
-        <li><a href='?page=result'>Home</a></li>
+        <li><a href='?page=results'>Home</a></li>
         <?php if (isset($_SESSION['token'])) : ?>
             <li><a href='?page=login'>Login</a></li>
         <?php else : ?>

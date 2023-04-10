@@ -1,6 +1,6 @@
 <?php
 
-require $_SERVER['DOCUMENT_ROOT'] . '/include/dotenv.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/include/dotenv.php';
 
 /**
  * The base URL for any request
@@ -19,7 +19,7 @@ define("BASE_URL", "https://moviesdatabase.p.rapidapi.com/");
 function gen_date(array $date): string
 {
     $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    $date = $months[$date['month']] . ' ' . $date['day'] . ', ' . $date['year'];
+    $date = $months[$date['month'] - 1] . ' ' . $date['day'] . ', ' . $date['year'];
 
     return $date;
 }

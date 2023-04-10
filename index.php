@@ -40,7 +40,7 @@
     <main>
         <?php
 
-        $page = isset($_GET['page']) != '' ? $_GET['page'] : 'result'; // Get which page is currently requested. "result" is default
+        $page = isset($_GET['page']) != '' ? $_GET['page'] : 'results'; // Get which page is currently requested. "results" is default
         require_once $_SERVER['DOCUMENT_ROOT'] . '/content/' . $page . '.php'; // Display contents of requested page
         ?>
     </main>

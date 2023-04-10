@@ -257,7 +257,7 @@ img {
     opacity: 100%;
 }
 
-#wantto {
+/* #wantto {
     transform: translate(-150%,150%);
 }
 
@@ -267,7 +267,7 @@ img {
 
 #info {
     transform: translate(-300%,10%);
-}
+} */
 
 button:hover {
     background-color: var(--red-pink);

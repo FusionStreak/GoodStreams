@@ -1,7 +1,5 @@
 <?php
 
-require $_SERVER['DOCUMENT_ROOT'] . '/include/dotenv.php';
-
 define('DB_SERVER', 'localhost');
 define('DB_NAME', 'GoodStreams');
 
