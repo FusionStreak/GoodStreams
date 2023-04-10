@@ -111,9 +111,9 @@ class DB
     }
 
     /**
-     * Insert a `movie_id` into our DB
-     * 
-     * @param string $movie_id The movie_id
+     * Inserts a movie_id in database
+     * @param string $movie_id The movie id
+     * @return void
      */
     private function insert_movie(string $movie_id)
     {

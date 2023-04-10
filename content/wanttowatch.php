@@ -14,13 +14,16 @@ for ($i = 0; $i < sizeof($wishlist); $i++) {
 ?>
 
 <ul class="movie-list">
-    <?php foreach ($wishlist as $movie) : ?>
+    <?php foreach ($wishlist as $movie): ?>
         <li>
             <img src="<?php print $movie['img']; ?>" loading="lazy">
             <div>
-                <h3><?php print $movie['title']; ?></h3>
-                <p>Released: <?php print $movie['date']; ?></p?
-            </div>
+                <h3>
+                    <?php print $movie['title']; ?>
+                </h3>
+                <p>Released:
+                    <?php print $movie['date']; ?>
+                    </p? </div>
         </li>
     <?php endforeach; ?>
 </ul>
