@@ -3,11 +3,11 @@ require $_SERVER['DOCUMENT_ROOT'] . '/include/db.php';
 
 function logout()
 {
-  $database = new DB();
-  $database->logout($_SESSION['email'], $_SESSION['token']);
-  session_unset();
+  /* $database = new DB();
+  $database->logout($_SESSION['email'], $_SESSION['token']); */
+  print session_unset();
   // Destroy the session
-  session_destroy();
+  print session_destroy();
 }
 
 if (isset($_GET['logout'])) {
