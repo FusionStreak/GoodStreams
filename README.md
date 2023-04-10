@@ -28,7 +28,7 @@ We are using the *[MoviesDatabase](https://rapidapi.com/SAdrian/api/moviesdataba
 2) Create/Login for an account
 3) Generate an API key (Keep it secret)
     - Can be found under header paramaters
-4) Install XAMPP/LAMPP
+4) Install [XAMPP/LAMPP v8.2+](https://www.apachefriends.org/)
 5) Startup Apache and MySQL servers
 6) Create a file called `.env` under `include/`
 7) Insert the following into the file

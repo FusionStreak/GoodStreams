@@ -15,7 +15,7 @@ skinparam{
 
     Linetype ortho
     Nodesep 150
-    Ranksep 150
+    Ranksep 50
     ArrowThickness 3
     ArrowColor #FFFFFF
   
@@ -29,6 +29,14 @@ entity Users {
     email: VARCHAR(50)
     pass: VARCHAR(255)
     uname: VARCHAR(50)
+}
+
+entity Users_Token {
+    *(user_id, token)
+    --[Foreign Keys]--
+    user_id
+    --
+    token: VARCHAR(255)
 }
 
 entity Movies {
@@ -53,6 +61,7 @@ entity Reviews {
     date: DATE()
 }
 
+Users -u-o{ Users_Token
 Users -d-o{ Wishlist
 Users -l-o{ Reviews
 Movies -o{ Wishlist
