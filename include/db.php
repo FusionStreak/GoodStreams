@@ -114,6 +114,11 @@ class DB
         return $result;
     }
 
+    /**
+     * Insert a `movie_id` into our DB
+     * 
+     * @param string $movie_id The movie_id
+     */
     private function insert_movie(string $movie_id)
     {
         $query = 'INSERT IGNORE INTO Movies (movie_id) VALUES (?)';
@@ -121,7 +126,14 @@ class DB
         $this->conn->execute_query($query, [$movie_id]);
     }
 
-    private function insert_token(string $email, $token){
+    /**
+     * Insert a user token into the DB for verification
+     * 
+     * @param string $email The user's email address
+     * @param string $token The user's session token
+     */
+    private function insert_token(string $email, $token)
+    {
         $user = $this->get_user($email);
 
         $query = 'INSERT INTO Users_Token (user_id, token) VALUES (?, ?);';
@@ -163,7 +175,7 @@ class DB
 
         $result = $this->conn->execute_query($query, [$email])->fetch_assoc();
 
-        if (password_verify($pass, $result['pass']) && $email === $result['email']){
+        if (password_verify($pass, $result['pass']) && $email === $result['email']) {
             $token = bin2hex(random_bytes(16));
             $this->insert_token($email, $token);
             return $token;
@@ -171,13 +183,29 @@ class DB
         return false;
     }
 
-    public function verify_token($email, $token): bool {
+    /**
+     * Verify a given token and email combination against the database
+     * 
+     * @param string $email The user's email address
+     * @param string $token The supplied token
+     * 
+     * @return bool Whether this combination is valid
+     */
+    public function verify_token($email, $token): bool
+    {
         $user = $this->get_user($email);
         $query = 'SELECT (user_id, token) FROM Users_Token WHERE user_id = ? AND token = ?;';
         return $this->conn->execute_query($query, [$user['user_id'], $token]) ? true : false;
     }
 
-    public function logout($email, $token) {
+    /**
+     * Removes a user session token
+     * 
+     * @param string $email The user's email address
+     * @param string $token The supplied token
+     */
+    public function logout($email, $token)
+    {
         if ($this->verify_token($email, $token)) {
             $user = $this->get_user($email);
             $query = 'DELETE FROM Users_Token WHERE user_id = ? AND token = ?;';
