@@ -231,6 +231,7 @@ li a.selected {
 .images {
     margin-left: 10px;
     display: inline-block;
+    width: 200px;
 }
 
 img {
@@ -257,17 +258,21 @@ img {
     opacity: 100%;
 }
 
-/* #wantto {
-    transform: translate(-150%,150%);
+.images form {
+    width: 200px;
+}
+
+#wantto {
+    transform: translate(0%,-400%);
 }
 
 #watched {
-    transform: translate(-200%,300%);
+    transform: translate(0%,-300%);
 }
 
 #info {
-    transform: translate(-300%,10%);
-} */
+    transform: translate(0%,-650%);
+}
 
 button:hover {
     background-color: var(--red-pink);
