@@ -149,14 +149,16 @@ label {
     margin-top: 10px;
 }
 
-input[type=email],input[type=text], input[type=password] {   
-    width: 90%;   
-    margin: 8px 0;  
-    padding: 12px 22px;   
-    display: inline-block;   
-    border: 3px solid #EB455F;     
-    box-sizing: border-box;   
-}  
+input[type=email],
+input[type=text],
+input[type=password] {
+    width: 90%;
+    margin: 8px 0;
+    padding: 12px 22px;
+    display: inline-block;
+    border: 3px solid #EB455F;
+    box-sizing: border-box;
+}
 
 input {
     all: unset;
@@ -210,11 +212,11 @@ nav #genres-nav {
 nav #genres-nav li {
     display: inline;
     padding: 10px;
-    text-decoration:none;
+    text-decoration: none;
 }
 
 li a {
-    text-decoration:none;
+    text-decoration: none;
     color: var(--red-pink);
 }
 
@@ -263,15 +265,15 @@ img {
 }
 
 #wantto {
-    transform: translate(0%,-400%);
+    transform: translate(0%, -400%);
 }
 
 #watched {
-    transform: translate(0%,-300%);
+    transform: translate(0%, -300%);
 }
 
 #info {
-    transform: translate(0%,-650%);
+    transform: translate(0%, -650%);
 }
 
 button:hover {
@@ -279,4 +281,25 @@ button:hover {
     color: var(--beige);
 }
 
+ul.movie-list {
+    list-style: none;
+    overflow: auto;
+}
 
+ul.movie-list li {
+    display: flex;
+    padding: 10px;
+    margin: 5 auto 5 auto;
+    width: 60%;
+    border-radius: 10px;
+    border: 3px solid var(--red-pink);
+}
+
+ul.movie-list li img {
+    height: 100px;
+    width: auto;
+}
+
+ul.movie-list li div {
+    padding: 10px;
+}

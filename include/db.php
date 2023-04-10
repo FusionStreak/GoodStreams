@@ -19,8 +19,6 @@ class DB
 
     public function __construct()
     {
-        // Load the API details to ENV
-        (new DotEnv(__DIR__ . '/.env'))->load();
         $this->conn = new mysqli(DB_SERVER, 'root');
 
         $this->initDB();
