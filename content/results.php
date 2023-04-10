@@ -33,38 +33,39 @@ if (isset($_GET['method'])) {
             $movies = $moviesAPI->search($_GET['search']);
             break;
         default:
-        $movies = $moviesAPI->get_top();
-        break;
+            $movies = $moviesAPI->get_top();
+            break;
     }
 } else {
     $movies = $moviesAPI->get_top();
-}?>
+} ?>
 
 <div id="imgcontainer">
-<?php
-$i = 0;
-for ($row = 0; $row < sizeof($movies); $row++) {
-    if ($movies[$i]['img'] != NULL) : ?>
-        <div class="images">
-            <img src="<?php echo $movies[$i]['img']; ?>" loading="lazy">
-            <form method="POST">
-                <input name="page" type='hidden' value="results">
-                <input name="method" type='hidden' value="wantto">
-                <button id="wantto" type="submit" name="wantto" value='<?php print $movies[$i]['id']; ?>'>Want to watch</button>
-            </form>
-            <form method="POST">
-                <input name="page" type='hidden' value="results">
-                <input name="method" type='hidden' value="watched">
-                <button id="watched" type="submit" name="watched" value='' <?php print $movies[$i]['id']; ?>'>Watched</button>
-            </form>
-            <form method="GET">
-                <input name="page" type='hidden' value="movie">
-                <button id="info" type="submit" name="movie" value='<?php print $movies[$i]['id']; ?>'>Info</button>
-            </form>
-        </div>
-<?php
-    endif;
-    $i++;
-}
-?>
+    <?php
+    $i = 0;
+    for ($row = 0; $row < sizeof($movies); $row++) {
+        if ($movies[$i]['img'] != NULL): ?>
+            <div class="images">
+                <img src="<?php echo $movies[$i]['img']; ?>" loading="lazy">
+                <form method="POST">
+                    <input name="page" type='hidden' value="results">
+                    <input name="method" type='hidden' value="wantto">
+                    <button id="wantto" type="submit" name="wantto" value='<?php print $movies[$i]['id']; ?>'>Want to
+                        watch</button>
+                </form>
+                <form method="POST">
+                    <input name="page" type='hidden' value="results">
+                    <input name="method" type='hidden' value="watched">
+                    <button id="watched" type="submit" name="watched" value='' <?php print $movies[$i]['id']; ?>'>Watched</button>
+                </form>
+                <form method="GET">
+                    <input name="page" type='hidden' value="movie">
+                    <button id="info" type="submit" name="movie" value='<?php print $movies[$i]['id']; ?>'>Info</button>
+                </form>
+            </div>
+            <?php
+        endif;
+        $i++;
+    }
+    ?>
 </div>

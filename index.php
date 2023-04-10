@@ -1,4 +1,4 @@
-<?php session_start(); ?> 
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,14 +22,16 @@
     <link rel="stylesheet" href="styles/main.css" />
     <script async type="text/javascript" src="js/script.js"></script>
 
-    <title><?php print ucfirst(isset($_GET['page']) ? $_GET['page'] : 'home') . ' | GoodStreams' ?></title>
+    <title>
+        <?php print ucfirst(isset($_GET['page']) ? $_GET['page'] : 'home') . ' | GoodStreams' ?>
+    </title>
 </head>
 
 <body>
     <?php
     // Render the header
     $_SERVER['DOCUMENT_ROOT'] = __DIR__;
-    
+
     require_once $_SERVER['DOCUMENT_ROOT'] . '/components/header.php';
     ?>
     <?php

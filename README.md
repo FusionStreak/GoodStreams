@@ -45,6 +45,14 @@ We are using the *[MoviesDatabase](https://rapidapi.com/SAdrian/api/moviesdataba
 - Review shows/movies watched
 - View others reviews on shows/movies
 
+## TODO
+
+- Add input verification for registration
+- Add input verification for login
+- Add review modal
+- Add review list under movie details
+- Add list of watched movies
+
 ## The Stack
 
 This website is designed to work with the latest XAMPP/LAMPP stack

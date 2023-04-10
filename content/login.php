@@ -25,17 +25,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 }
 
-if (isset($_SESSION['email'])) : // Display the welcome message and logout button 
-?>
+if (isset($_SESSION['email'])): // Display the welcome message and logout button 
+  ?>
 
-  <h2>Welcome <?php print $_SESSION['email'] ?> !</h2>
+  <h2>Welcome
+    <?php print $_SESSION['email'] ?> !
+  </h2>
 
-<?php else : // Display the login form 
-?>
+<?php else: // Display the login form 
+  ?>
 
   <h2>Login Page</h2>
-  <?php if (isset($error)) : ?>
-    <p><?= $error ?></p>
+  <?php if (isset($error)): ?>
+    <p>
+      <?= $error ?>
+    </p>
   <?php endif; ?>
   <form action="?page=login" method="post">
     <label for="email">Email</label>
