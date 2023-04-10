@@ -13,7 +13,8 @@
     --light-blue: rgb(186, 215, 233);
     --beige: rgb(252, 255, 231);
     --red-pink: rgb(235, 69, 95);
-    --purple: rgb(68, 60, 104)
+    --purple: rgb(68, 60, 104);
+
 }
 
 body {
@@ -311,4 +312,26 @@ ul.movie-list li img {
 
 ul.movie-list li div {
     padding: 10px;
+}
+
+@supports (display:grid) {
+    @media screen and (max-width:500px) {
+        body {
+            flex-wrap:nowrap;
+            align-items: stretch;
+        }
+
+        header {
+            display:block;
+        }
+
+        .material-symbols-outlined {
+            display: flex;
+            justify-content: center;
+        }
+
+        #searchform form {
+            width: 250px;
+        }
+    }
 }
