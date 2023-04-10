@@ -32,6 +32,9 @@ if (isset($_GET['method'])) {
         case 'search':
             $movies = $moviesAPI->search($_GET['search']);
             break;
+        default:
+        $movies = $moviesAPI->get_top();
+        break;
     }
 } else {
     $movies = $moviesAPI->get_top();
