@@ -49,9 +49,7 @@ We are using the *[MoviesDatabase](https://rapidapi.com/SAdrian/api/moviesdataba
 
 - Add input verification for registration
 - Add input verification for login
-- Add review modal
 - Add review list under movie details
-- Add list of watched movies
 
 ## The Stack
 
