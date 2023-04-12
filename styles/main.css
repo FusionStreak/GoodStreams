@@ -326,7 +326,7 @@ ul.movie-list {
 ul.movie-list li {
     display: flex;
     padding: 10px;
-    margin: 5 auto 5 auto;
+    margin: 5px auto 5px auto;
     width: 60%;
     border-radius: 10px;
     border: 3px solid var(--red-pink);
@@ -339,6 +339,14 @@ ul.movie-list li img {
 
 ul.movie-list li div {
     padding: 10px;
+    display: grid;
+    column-gap: 20px;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        ". ."
+        ". ."
+        "Review Review";
 }
 
 @supports (display:grid) {

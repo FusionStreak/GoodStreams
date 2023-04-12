@@ -50,7 +50,7 @@ class Movie
         $cleaned = []; // Holds the cleaned data
         $cleaned['id'] = $result['id']; // Retreive ID
         $cleaned['title'] = $result['titleText']['text']; // Retrieve Title
-        $cleaned['img'] = $result['primaryImage']['url'] ? $result['primaryImage']['url'] : NULL; // Retrieve link to poster img
+        $cleaned['img'] = isset($result['primaryImage']['url']) ? $result['primaryImage']['url'] : NULL; // Retrieve link to poster img
         $cleaned['date'] = $result['releaseDate'] ? gen_date($result['releaseDate']) : NULL; // Retrieve and parse release date
 
         return $cleaned;

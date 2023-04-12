@@ -319,6 +319,49 @@ class DB
     }
 
     /**
+     * Get an array of reviews the user has made
+     * @param string $email The user's email address
+     * @return array The reviews made by the user
+     */
+    public function get_user_reviews(string $email): array
+    {
+        $user = $this->get_user($email);
+
+        $query = "SELECT * FROM Reviews WHERE user_id = ?";
+
+        $results = $this->conn->execute_query($query, [$user['user_id']])->fetch_all();
+
+        $result = [];
+
+        foreach ($results as $res) {
+            unset($res[0]);
+            array_push($result, $res);
+        }
+
+        return $result;
+    }
+
+    /**
+     * Get an array of reviews made for a movie
+     * @param string $movie_id The movie's id
+     * @return array The movie's reviews
+     */
+    public function get_movie_reviews(string $movie_id): array
+    {
+        $query = "SELECT * FROM Reviews WHERE movie_id = ?";
+
+        $results = $this->conn->execute_query($query, [$movie_id])->fetch_all();
+
+        $result = [];
+
+        foreach ($results as $res) {
+            array_push($result, $res[0]);
+        }
+
+        return $result;
+    }
+
+    /**
      * Removes a review from a movie
      * 
      * @param string $email The user's email address
