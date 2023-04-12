@@ -69,7 +69,6 @@ header h1 {
 
 footer {
     background-color: var(--navy);
-    padding: 2%;
     width: 100%;
     left: 0;
     bottom: 0;
@@ -274,16 +273,44 @@ img {
     width: 200px;
 }
 
-#wantto {
+.wantto {
     transform: translate(0%, -400%);
 }
 
-#watched {
+.watched {
     transform: translate(0%, -300%);
 }
 
-#info {
+.info {
     transform: translate(0%, -650%);
+}
+
+.review-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    margin: auto;
+
+    width: 60%;
+    border-radius: 10px;
+    border: 3px solid var(--red-pink);
+    background-color: var(--light-blue);
+    float: left;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    padding: 30px;
+
+}
+
+.review-modal form {
+    padding: 20px;
+}
+
+.review-modal form textarea {
+    width: 480px;
+    height: 200px;
 }
 
 button:hover {
@@ -317,12 +344,12 @@ ul.movie-list li div {
 @supports (display:grid) {
     @media screen and (max-width:500px) {
         body {
-            flex-wrap:nowrap;
+            flex-wrap: nowrap;
             align-items: stretch;
         }
 
         header {
-            display:block;
+            display: block;
         }
 
         .material-symbols-outlined {

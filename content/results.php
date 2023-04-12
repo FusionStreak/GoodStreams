@@ -14,11 +14,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $database->add_wish($_SESSION['email'], $_POST['wantto']);
             break;
         case 'watched':
-            $database->add_review($_SESSION['email'], $_POST['watched'], 0, '');
+            $database->add_review($_SESSION['email'], $_POST['watched'], 0, $_POST['review']);
             break;
         default:
             exit;
-            break;
     }
 }
 
@@ -39,7 +38,6 @@ if (isset($_GET['method'])) {
 } else {
     $movies = $moviesAPI->get_top();
 } ?>
-
 <div id="imgcontainer">
     <?php
     $i = 0;
@@ -50,17 +48,14 @@ if (isset($_GET['method'])) {
                 <form method="POST">
                     <input name="page" type='hidden' value="results">
                     <input name="method" type='hidden' value="wantto">
-                    <button id="wantto" type="submit" name="wantto" value='<?php print $movies[$i]['id']; ?>'>Want to
+                    <button class="wantto" type="submit" name="wantto" value='<?php print $movies[$i]['id']; ?>'>Want to
                         watch</button>
                 </form>
-                <form method="POST">
-                    <input name="page" type='hidden' value="results">
-                    <input name="method" type='hidden' value="watched">
-                    <button id="watched" type="submit" name="watched" value='' <?php print $movies[$i]['id']; ?>'>Watched</button>
-                </form>
+                <button class="watched" name="watched" value='<?php print $movies[$i]['id']; ?>'
+                    onclick="displayReview('<?php print $movies[$i]['id']; ?>')" style="margin: 10px 65px;">Watched</button>
                 <form method="GET">
                     <input name="page" type='hidden' value="movie">
-                    <button id="info" type="submit" name="movie" value='<?php print $movies[$i]['id']; ?>'>Info</button>
+                    <button class="info" type="submit" name="movie" value='<?php print $movies[$i]['id']; ?>'>Info</button>
                 </form>
             </div>
             <?php
@@ -68,4 +63,14 @@ if (isset($_GET['method'])) {
         $i++;
     }
     ?>
+</div>
+<div id="review-modal" class="review-modal">
+    <span id="close-modal" onclick="closeModal()" class="material-symbols-outlined">close</span>
+    <form method="POST">
+        <input name="page" type='hidden' value="results">
+        <input name="method" type='hidden' value="watched">
+        <input id="review-movie" name="watched" value="" type="hidden">
+        <textarea name="review"></textarea>
+        <button type="submit">Submit Review</button>
+    </form>
 </div>

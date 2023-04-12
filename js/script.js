@@ -26,3 +26,14 @@ function closeNav() {
     }
 }
 
+function displayReview(movie_id) {
+    let modal = document.getElementById("review-modal");
+    modal.style.display = 'block';
+    document.getElementById("review-movie").value = movie_id;
+}
+
+function closeModal() {
+    let modal = document.getElementById("review-modal");
+    modal.style.display = 'none';
+    document.getElementById("review-movie").value = '';
+}
