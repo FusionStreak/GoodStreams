@@ -288,6 +288,7 @@ class DB
     public function add_review(string $email, string $movie_id, int $rating, string $review): bool
     {
         $this->insert_movie($movie_id);
+        $this->remove_wish($email, $movie_id);
         $user = $this->get_user($email);
 
         $query = 'REPLACE INTO Reviews (user_id, movie_id, rating, review) VALUES (?, ?, ?, ?);';
