@@ -25,13 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 }
 
-if (isset($_SESSION['email'])): // Display the welcome message and logout button 
+if (isset($_SESSION['email'])): 
+  header("Location: ?page=results");// redirect to the home page
+  exit();
   ?>
-
-  <h2>Welcome
-    <?php print $_SESSION['email'] ?> !
-  </h2>
-
 <?php else: // Display the login form 
   ?>
 

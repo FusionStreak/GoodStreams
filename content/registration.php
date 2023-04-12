@@ -23,8 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <input type="password" id="password" name="password"><br>
     <input type='submit' value='Register'>
   </form>
-  <?php if ($success): ?>
-    <div class='success' style="margin: auto;">
-      <h6>User registered successfully.</h6>
-    </div>
+  <?php if ($success): 
+    header("Location: ?page=login"); // redirect to the login page
+    exit();
+    ?>
   <?php endif; ?>
